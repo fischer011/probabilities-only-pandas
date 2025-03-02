@@ -22,10 +22,11 @@ def main():
 
     # Using crosstab to generate frequency distribution
     # of each aspiration type given make.
-    frequency_dist = pd.crosstab(cars_df.make, cars_df.aspiration
+    frequency_dist = pd.crosstab(cars_df.make
+                                 , cars_df.aspiration
                                  , normalize=0
                                  )
-
+    
     # Formatting for percentages. 
     cond_probability = (frequency_dist*100).stack()
 
@@ -37,8 +38,11 @@ def main():
 
     # The lambda function is called to generate the print template.
     print_probability = lambda x: print("Prob(aspiration=" + x.id[1] 
-                                        + "|make=" + x.id[0] + ") = "
-                                        + str(x.probability) + "%")
+                                        + "|make=" + x.id[0] 
+                                        + ") = "
+                                        + str(x.probability) 
+                                        + "%"
+                                        )
 
     with open(output_dir, 'w') as f:
         original_stdout = sys.stdout
